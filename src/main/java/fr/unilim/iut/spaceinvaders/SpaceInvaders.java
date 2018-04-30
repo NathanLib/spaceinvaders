@@ -10,16 +10,16 @@ public class SpaceInvaders {
 		this.hauteur = hauteur;
 	}
 	
-    @Override
-    public String toString() {
-        String espaceDeJeu = "";
-        for (int i = 0; i < hauteur; i++) {
-            for (int j = 0; j < longueur; j++) {
-                espaceDeJeu += ".";
-            }
-            espaceDeJeu += "\n";
-        }
-        return espaceDeJeu;
-    }
+	@Override
+	public String toString() {
+		StringBuilder espaceDeJeu = new StringBuilder();
+		for (int i = 0; i < hauteur; i++) {
+			for (int j = 0; j < longueur; j++) {
+				espaceDeJeu.append('.');
+			}
+			espaceDeJeu.append('\n');
+		}
+		return espaceDeJeu.toString();
+	}
 
 }
