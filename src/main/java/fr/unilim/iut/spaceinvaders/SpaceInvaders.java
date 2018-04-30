@@ -1,7 +1,6 @@
 package fr.unilim.iut.spaceinvaders;
 
 public class SpaceInvaders {
-
 	int longueur;
 	int hauteur;
 
