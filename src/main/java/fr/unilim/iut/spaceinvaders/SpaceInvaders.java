@@ -1,6 +1,9 @@
 package fr.unilim.iut.spaceinvaders;
 
 public class SpaceInvaders {
+	private static final char MARQUE_FIN_LIGNE = '\n';
+	private static final char MARQUE_VIDE = '.';
+	private static final char MARQUE_VAISSEAU = 'V';
 	int longueur;
 	int hauteur;
 	Vaisseau vaisseau;
@@ -17,7 +20,7 @@ public class SpaceInvaders {
 			for (int x = 0; x < longueur; x++) {
 				espaceDeJeu.append(recupererMarqueDeLaPosition(x, y));
 			}
-			espaceDeJeu.append('\n');
+			espaceDeJeu.append(MARQUE_FIN_LIGNE);
 		}
 		return espaceDeJeu.toString();
 	}
@@ -39,9 +42,9 @@ public class SpaceInvaders {
 	 private char recupererMarqueDeLaPosition(int x, int y) {
 	        char marque;
 	        if (this.aUnVaisseauQuiOccupeLaPosition(x, y))
-	           marque='V';
+	           marque=MARQUE_VAISSEAU;
 	        else
-	           marque='.';
+	           marque=MARQUE_VIDE;
 	        return marque;
 		}
 
