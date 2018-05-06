@@ -4,7 +4,7 @@ public class SpaceInvaders {
 	int longueur;
 	int hauteur;
 	Vaisseau vaisseau;
-
+	
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
 		this.hauteur = hauteur;
@@ -15,16 +15,14 @@ public class SpaceInvaders {
 		StringBuilder espaceDeJeu = new StringBuilder();
 		for (int y = 0; y < hauteur; y++) {
 			for (int x = 0; x < longueur; x++) {
-				if (this.aUnVaisseauQuiOccupeLaPosition(x, y))
-					espaceDeJeu.append('V');
-				else
-					espaceDeJeu.append('.');
+				espaceDeJeu.append(recupererMarqueDeLaPosition(x, y));
 			}
 			espaceDeJeu.append('\n');
 		}
 		return espaceDeJeu.toString();
 	}
 
+	
 	public void positionnerUnNouveauVaisseau(int x, int y) {
 		this.vaisseau = new Vaisseau(x,y);
 	}
@@ -37,5 +35,14 @@ public class SpaceInvaders {
 	private boolean aUnVaisseau() {
 		return vaisseau!=null;
 	}
+	
+	 private char recupererMarqueDeLaPosition(int x, int y) {
+	        char marque;
+	        if (this.aUnVaisseauQuiOccupeLaPosition(x, y))
+	           marque='V';
+	        else
+	           marque='.';
+	        return marque;
+		}
 
 }
