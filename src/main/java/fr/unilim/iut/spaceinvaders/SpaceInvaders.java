@@ -15,11 +15,6 @@ public class SpaceInvaders {
 		this.hauteur = hauteur;
 	}
 
-	@Override
-	public String toString() {
-		return recupererEspaceJeuDansChaineASCII();
-	}
-
 	public void positionnerUnNouveauVaisseau(int x, int y) {
 
 		if (  !estDansEspaceJeu(x, y) )
