@@ -1,9 +1,11 @@
 package fr.unilim.iut.spaceinvaders;
 
+import fr.unilim.iut.spaceinvaders.moteurJeu.Commande;
+import fr.unilim.iut.spaceinvaders.moteurJeu.Jeu;
 import fr.unilim.iut.spaceinvaders.utils.DebordementEspaceJeuException;
 import fr.unilim.iut.spaceinvaders.utils.HorsEspaceJeuException;
 
-public class SpaceInvaders {
+public class SpaceInvaders implements Jeu {
 	private static final char MARQUE_FIN_LIGNE = '\n';
 	private static final char MARQUE_VIDE = '.';
 	private static final char MARQUE_VAISSEAU = 'V';
@@ -19,13 +21,13 @@ public class SpaceInvaders {
 	public void positionnerUnNouveauVaisseau(Dimension dimension, Position position) {
 		int x = position.abscisse();
 		int y = position.ordonnee();
-		
+
 		if (!estDansEspaceJeu(x, y))
 			throw new HorsEspaceJeuException("La position du vaisseau est en dehors de l'espace jeu");
 
 		int longueurVaisseau = dimension.longueur();
 		int hauteurVaisseau = dimension.hauteur();
-		
+
 		if (!estDansEspaceJeu(x + longueurVaisseau - 1, y))
 			throw new DebordementEspaceJeuException("Le vaisseau déborde de l'espace jeu vers la droite à cause de sa longueur");
 		if (!estDansEspaceJeu(x, y - hauteurVaisseau + 1))
@@ -47,7 +49,7 @@ public class SpaceInvaders {
 			vaisseau.seDeplacerVersLaGauche();
 	}
 
-	
+
 	// Extract method
 	private boolean aUnVaisseauQuiOccupeLaPosition(int x, int y) {
 		return this.aUnVaisseau() && vaisseau.occupeLaPosition(x, y);
@@ -87,6 +89,25 @@ public class SpaceInvaders {
 
 	private boolean peutSeDeplacerAGauche() {
 		return vaisseau.abscisseLaPlusAGauche() > (1);
+	}
+
+	//Méthode de l'interface Jeu
+	@Override
+	public void evoluer(Commande commandeUser) {
+		if(commandeUser.droite) {
+			this.deplacerVaisseauVersLaDroite();
+		}
+		
+		if(commandeUser.gauche) {
+			this.deplacerVaisseauVersLaGauche();
+		}
+
+	}
+
+	@Override
+	public boolean etreFini() {
+		// le jeu n'est jamais fini
+		return false;
 	}
 
 }
