@@ -16,21 +16,27 @@ public class SpaceInvaders {
 		this.hauteur = hauteur;
 	}
 
-	
-	public void positionnerUnNouveauVaisseau(int longueur, int hauteur, int x, int y) {
+	public void positionnerUnNouveauVaisseau(Dimension dimension, Position position) {
+		int x = position.abscisse();
+		int y = position.ordonnee();
+		
 		if (!estDansEspaceJeu(x, y))
 			throw new HorsEspaceJeuException("La position du vaisseau est en dehors de l'espace jeu");
 
-		if ( !estDansEspaceJeu(x+longueur-1,y))
-			throw new DebordementEspaceJeuException("Le vaisseau déborde de l'espace jeu vers la droite à cause de sa longueur");
-		if (!estDansEspaceJeu(x,y-hauteur+1))
-			throw new DebordementEspaceJeuException("Le vaisseau déborde de l'espace jeu vers le bas à cause de sa hauteur");
+		int longueurVaisseau = dimension.longueur();
+		int hauteurVaisseau = dimension.hauteur();
 		
-		vaisseau = new Vaisseau(longueur, hauteur);
+		if (!estDansEspaceJeu(x + longueurVaisseau - 1, y))
+			throw new DebordementEspaceJeuException("Le vaisseau déborde de l'espace jeu vers la droite à cause de sa longueur");
+		if (!estDansEspaceJeu(x, y - hauteurVaisseau + 1))
+			throw new DebordementEspaceJeuException("Le vaisseau déborde de l'espace jeu vers le bas à cause de sa hauteur");
+
+		vaisseau = new Vaisseau(longueurVaisseau, hauteurVaisseau);
 		vaisseau.positionner(x, y);
+
 	}
-	
-	
+
+
 	public void deplacerVaisseauVersLaDroite() {
 		if (peutSeDeplacerADroite())
 			vaisseau.seDeplacerVersLaDroite();
@@ -41,23 +47,22 @@ public class SpaceInvaders {
 			vaisseau.seDeplacerVersLaGauche();
 	}
 
-		
-
-	//Extract method
+	
+	// Extract method
 	private boolean aUnVaisseauQuiOccupeLaPosition(int x, int y) {
 		return this.aUnVaisseau() && vaisseau.occupeLaPosition(x, y);
 	}
 
 	private boolean aUnVaisseau() {
-		return vaisseau!=null;
+		return vaisseau != null;
 	}
 
 	private char recupererMarqueDeLaPosition(int x, int y) {
 		char marque;
 		if (this.aUnVaisseauQuiOccupeLaPosition(x, y))
-			marque=MARQUE_VAISSEAU;
+			marque = MARQUE_VAISSEAU;
 		else
-			marque=MARQUE_VIDE;
+			marque = MARQUE_VIDE;
 		return marque;
 	}
 
@@ -71,22 +76,17 @@ public class SpaceInvaders {
 		}
 		return espaceDeJeu.toString();
 	}
-	
+
 	private boolean estDansEspaceJeu(int x, int y) {
 		return ((x >= 0) && (x < longueur)) && ((y >= 0) && (y < hauteur));
 	}
 
-	
 	private boolean peutSeDeplacerADroite() {
-		return vaisseau.abscisseLaPlusADroite() < (longueur-1);
+		return vaisseau.abscisseLaPlusADroite() < (longueur - 1);
 	}
+
 	private boolean peutSeDeplacerAGauche() {
 		return vaisseau.abscisseLaPlusAGauche() > (1);
 	}
-
-	
-
-	
-
 
 }
