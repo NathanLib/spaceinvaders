@@ -55,8 +55,12 @@ public class SpaceInvaders implements Jeu {
 		return this.aUnVaisseau() && vaisseau.occupeLaPosition(x, y);
 	}
 
-	private boolean aUnVaisseau() {
+	public boolean aUnVaisseau() {
 		return vaisseau != null;
+	}
+	
+	public Vaisseau recupererVaisseau() {
+		return this.vaisseau;
 	}
 
 	private char recupererMarqueDeLaPosition(int x, int y) {
@@ -110,4 +114,9 @@ public class SpaceInvaders implements Jeu {
 		return false;
 	}
 
+	public void initialiserJeu() {
+	    Position positionVaisseau = new Position(this.longueur/2,this.hauteur-1);
+	    Dimension dimensionVaisseau = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
+	    positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau);
+    }
 }
