@@ -10,6 +10,7 @@ public class Main {
 	    jeu.initialiserJeu();
 	    DessinSpaceInvaders afficheur = new DessinSpaceInvaders(jeu);
 
+	    
 	    MoteurGraphique moteur = new MoteurGraphique(jeu, afficheur);
 	    moteur.lancerJeu(Constante.ESPACEJEU_LONGUEUR, Constante.ESPACEJEU_HAUTEUR);
     }
