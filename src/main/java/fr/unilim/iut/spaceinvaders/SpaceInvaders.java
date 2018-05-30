@@ -53,6 +53,19 @@ public class SpaceInvaders implements Jeu {
 		}
 	}
 
+	public void tirerUnMissile(Dimension dimension, int vitesse) {
+		this.missile = this.vaisseau.tirerUnMissile(dimension,vitesse);
+	} 
+	
+	private boolean aUnMissileQuiOccupeLaPosition(int x, int y) {
+		return this.aUnMissile() && missile.occupeLaPosition(x, y);
+	}
+
+	public boolean aUnMissile() {
+		return missile != null;
+	}	
+	
+	
 
 	// Extract method
 	private boolean aUnVaisseauQuiOccupeLaPosition(int x, int y) {
@@ -93,6 +106,8 @@ public class SpaceInvaders implements Jeu {
 	}
 
 
+	
+	
 	//Méthode de l'interface Jeu
 	@Override
 	public void evoluer(Commande commandeUser) {
@@ -118,16 +133,6 @@ public class SpaceInvaders implements Jeu {
 		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
 	 }
 	
-	public void tirerUnMissile(Dimension dimension, int vitesse) {
-		this.missile = this.vaisseau.tirerUnMissile(dimension,vitesse);
-	} 
 	
-	private boolean aUnMissileQuiOccupeLaPosition(int x, int y) {
-		return this.aUnMissile() && missile.occupeLaPosition(x, y);
-	}
-
-	public boolean aUnMissile() {
-		return missile != null;
-	}
 	
 }
