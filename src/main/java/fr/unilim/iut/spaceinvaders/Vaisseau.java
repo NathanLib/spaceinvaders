@@ -1,20 +1,24 @@
 package fr.unilim.iut.spaceinvaders;
 
+import fr.unilim.iut.spaceinvaders.utils.MissileException;
+
 public class Vaisseau extends Sprite {
 
 	private Missile missile;
-	private Vaisseau vaisseau;
-
+	
 	public Vaisseau(Dimension dimension, Position positionOrigine, int vitesse) {
 		super(dimension, positionOrigine, vitesse);
 	}
 
-	
+
 	public Missile tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
-
-		Position positionOrigineMissile = calculerLaPositionDeTirDuMissile(dimensionMissile);
-
-		return new Missile(dimensionMissile, positionOrigineMissile, vitesseMissile);
+		if (dimensionMissile.longueur() <= this.longueur()) {
+			Position positionOrigineMissile = calculerLaPositionDeTirDuMissile(dimensionMissile);
+			return new Missile(dimensionMissile, positionOrigineMissile, vitesseMissile);
+		}
+		else {
+			throw new MissileException("La longueur du missile est supérieur à celle du vaisseau");
+		}
 	}
 
 
@@ -27,5 +31,5 @@ public class Vaisseau extends Sprite {
 		return positionOrigineMissile;
 	}
 
-
+	
 }
