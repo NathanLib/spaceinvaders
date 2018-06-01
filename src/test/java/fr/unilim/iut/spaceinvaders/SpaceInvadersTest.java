@@ -302,4 +302,182 @@ public class SpaceInvadersTest {
 	}
 
 
+	@Test
+	public void test_unNouvelEnvahisseurEstCorrectementPositionneDansEspaceJeu(){
+
+		// Arrange
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(7,1), 1);
+
+		// Assert
+		assertEquals("" +
+				".......EE......\n" +
+				".......EE......\n" +
+				"...............\n" +
+				"...............\n" +
+				"...............\n" +
+				"...............\n" +
+				"...............\n" +
+				"...............\n" +
+				"...............\n" +
+				"...............\n", spaceinvaders.recupererEspaceJeuDansChaineASCII());
+
+	}
+
+	@Test
+	public void test_EnvahisseurAvance_DeplacerEnvahisseurVersLaDroite() {
+
+		// Arrange
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(7,1), 1);
+		spaceinvaders.deplacerEnvahisseurVersLaDroite();
+
+		// Assert
+		assertEquals("" +
+				"........EE.....\n" +
+				"........EE.....\n" +
+				"...............\n" +
+				"...............\n" +
+				"...............\n" +
+				"...............\n" +
+				"...............\n" +
+			    "...............\n" +
+				"...............\n" +
+				"...............\n",
+				spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+
+	@Test
+	public void test_EnvahisseurAvance_DeplacerEnvahisseurVersLaGauche() {
+
+		// Arrange
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(7,1), 1);
+		spaceinvaders.deplacerEnvahisseurVersLaGauche();
+
+		// Assert
+		assertEquals("" +
+				"......EE.......\n" +
+				"......EE.......\n" +
+				"...............\n" +
+				"...............\n" +
+				"...............\n" +
+				"...............\n" +
+				"...............\n" +
+				"...............\n" +
+				"...............\n" +
+				"...............\n",
+				spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+
+	@Test
+	public void test_EnvahisseurImmobile_DeplacerEnvahisseurVersLaDroite() {
+
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(13,1), 1);
+		spaceinvaders.deplacerEnvahisseurVersLaDroite();
+		assertEquals("" + 
+				".............EE\n" + 
+				".............EE\n" +
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+
+	@Test
+	public void test_EnvahisseurImmobile_DeplacerEnvahisseurVersLaGauche() {
+
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(0,1), 1);
+		spaceinvaders.deplacerEnvahisseurVersLaGauche();
+		assertEquals("" + 
+				"EE.............\n" + 
+				"EE.............\n" +
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+
+	@Test
+	public void test_EnvahisseurAvancePartiellement_DeplacerEnvahisseurVersLaDroite() {
+
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(12,1), 3);
+		spaceinvaders.deplacerEnvahisseurVersLaDroite();
+		assertEquals("" + 
+				".............EE\n" + 
+				".............EE\n" +
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+
+	@Test
+	public void test_EnvahisseurAvancePartiellement_DeplacerEnvahisseurVersLaGauche() {
+
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(2,1), 3);
+		spaceinvaders.deplacerEnvahisseurVersLaGauche();
+		assertEquals("" + 
+				"EE.............\n" + 
+				"EE.............\n" +
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+
+	@Test
+	public void test_EnvahisseurChangeDeDirectionDeDroiteAGauche(){
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(12,1), 1);
+		for (int i = 0; i<2; i++){
+			spaceinvaders.deplacerEnvahisseur();
+		}
+
+		assertEquals("" + 
+				"............EE.\n" + 
+				"............EE.\n" +
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+
+	@Test
+	public void test_EnvahisseurChangeDeDirectionDeGaucheADroite(){
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(12,1), 1);
+		for (int i = 0; i<15; i++){
+			spaceinvaders.deplacerEnvahisseur();
+		}
+
+		assertEquals("" + 
+				".EE............\n" + 
+				".EE............\n" +
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+
+
 }

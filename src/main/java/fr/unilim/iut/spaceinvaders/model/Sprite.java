@@ -16,6 +16,10 @@ public abstract class Sprite {
 		this.origine = origine;
 		this.vitesse = vitesse;
 	}
+	
+	public Dimension getDimension() {
+		return dimension;
+	}
 
 	public boolean occupeLaPosition(int x, int y) {
 		return (estAbscisseCouverte(x) && estOrdonneeCouverte(y));
