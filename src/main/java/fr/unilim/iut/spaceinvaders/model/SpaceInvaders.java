@@ -20,7 +20,7 @@ public class SpaceInvaders implements Jeu {
 		this.longueur = longueur;
 		this.hauteur = hauteur;
 
-		//Les envahisseurs se déplacent d'abord vers la droite
+		//Les envahisseurs commence leur déplacement par la droite
 		this.deplacementDroiteEnvahisseur = true;
 	}
 
@@ -192,21 +192,21 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	private boolean envahisseurSeDeplaceVersLaDroite() {
-		if(this.envahisseurColleAGauche()){
+		if(this.envahisseurToucheAGauche()){
 			this.deplacementDroiteEnvahisseur = true;
 		}
-		else if(this.envahisseurColleADroite()){
+		else if(this.envahisseurToucheADroite()){
 			this.deplacementDroiteEnvahisseur = false;
 		}
 
 		return this.deplacementDroiteEnvahisseur;
 	}
 
-	private boolean envahisseurColleADroite() {
+	private boolean envahisseurToucheADroite() {
 		return this.longueur-1 == this.envahisseur.abscisseLaPlusADroite();
 	}
 
-	private boolean envahisseurColleAGauche() {
+	private boolean envahisseurToucheAGauche() {
 		return this.envahisseur.abscisseLaPlusAGauche() == 0;
 	}
 

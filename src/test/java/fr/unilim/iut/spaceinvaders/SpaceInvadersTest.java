@@ -18,11 +18,15 @@ public class SpaceInvadersTest {
 
 	@Before
 	public void initialisation() {
+		
+		// Arrange
 		spaceinvaders = new SpaceInvaders(15, 10);
 	}
 
 	@Test
 	public void test_AuDebut_JeuSpaceInvaderEstVide() {
+		
+		// Assert
 		assertEquals("" + 
 				"...............\n" + 
 				"...............\n" +
@@ -38,7 +42,11 @@ public class SpaceInvadersTest {
 
 	@Test
 	public void test_unNouveauVaisseauEstCorrectementPositionneDansEspaceJeu() {
+		
+		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(1,1),new Position(7,9), 1);
+		
+		// Assert
 		assertEquals("" + 
 				"...............\n" + 
 				"...............\n" +
@@ -87,7 +95,11 @@ public class SpaceInvadersTest {
 
 	@Test
 	public void test_unNouveauVaisseauAvecDimensionEstCorrectementPositionneDansEspaceJeu() {
+		
+		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2),new Position(7,9), 1);
+		
+		// Assert
 		assertEquals("" + 
 				"...............\n" + 
 				"...............\n" +
@@ -122,8 +134,11 @@ public class SpaceInvadersTest {
 	@Test
 	public void test_VaisseauImmobile_DeplacerVaisseauVersLaDroite() {
 
+		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2),new Position(12,9), 3);
 		spaceinvaders.deplacerVaisseauVersLaDroite();
+		
+		// Assert
 		assertEquals("" + 
 				"...............\n" + 
 				"...............\n" +
@@ -140,9 +155,11 @@ public class SpaceInvadersTest {
 	@Test
 	public void test_VaisseauAvance_DeplacerVaisseauVersLaGauche() {
 
+		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2),new Position(7,9), 3);
 		spaceinvaders.deplacerVaisseauVersLaGauche();
 
+		// Assert
 		assertEquals("" + 
 				"...............\n" + 
 				"...............\n" +
@@ -159,9 +176,11 @@ public class SpaceInvadersTest {
 	@Test
 	public void test_VaisseauImmobile_DeplacerVaisseauVersLaGauche() {
 
+		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2),new Position(0,9), 3);
 		spaceinvaders.deplacerVaisseauVersLaGauche();
 
+		// Assert
 		assertEquals("" + 
 				"...............\n" + 
 				"...............\n" +
@@ -178,8 +197,11 @@ public class SpaceInvadersTest {
 	@Test
 	public void test_VaisseauAvance_DeplacerVaisseauVersLaDroite() {
 
+		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2),new Position(7,9),3);
 		spaceinvaders.deplacerVaisseauVersLaDroite();
+		
+		// Assert
 		assertEquals("" + 
 				"...............\n" + 
 				"...............\n" +
@@ -196,8 +218,11 @@ public class SpaceInvadersTest {
 	@Test
 	public void test_VaisseauAvancePartiellement_DeplacerVaisseauVersLaDroite() {
 
+		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2),new Position(10,9),3);
 		spaceinvaders.deplacerVaisseauVersLaDroite();
+		
+		// Assert
 		assertEquals("" + 
 				"...............\n" + 
 				"...............\n" +
@@ -214,9 +239,11 @@ public class SpaceInvadersTest {
 	@Test
 	public void test_VaisseauAvancePartiellement_DeplacerVaisseauVersLaGauche() {
 
+		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2),new Position(1,9), 3);
 		spaceinvaders.deplacerVaisseauVersLaGauche();
 
+		// Assert
 		assertEquals("" + 
 				"...............\n" + 
 				"...............\n" +
@@ -233,9 +260,11 @@ public class SpaceInvadersTest {
 	@Test
 	public void test_MissileBienTireDepuisVaisseau_VaisseauLongueurImpaireMissileLongueurImpaire() {
 
+		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 2);
 		spaceinvaders.tirerUnMissile(new Dimension(3,2),2);
 
+		// Assert
 		assertEquals("" + 
 				"...............\n" + 
 				"...............\n" +
@@ -259,11 +288,13 @@ public class SpaceInvadersTest {
 	@Test
 	public void test_MissileAvanceAutomatiquement_ApresTirDepuisLeVaisseau() {
 
+		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 2);
 		spaceinvaders.tirerUnMissile(new Dimension(3,2),2);
 
 		spaceinvaders.deplacerMissile();
 
+		// Assert
 		assertEquals("" + 
 				"...............\n" + 
 				"...............\n" +
@@ -280,6 +311,7 @@ public class SpaceInvadersTest {
 	@Test
 	public void test_MissileDisparait_QuandIlCommenceASortirDeEspaceJeu() {
 
+		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 1);
 		spaceinvaders.tirerUnMissile(new Dimension(3,2),1);
 		for (int i = 1; i <=6 ; i++) {
@@ -288,6 +320,7 @@ public class SpaceInvadersTest {
 
 		spaceinvaders.deplacerMissile();
 
+		// Assert
 		assertEquals("" +
 				"...............\n" + 
 				"...............\n" +
@@ -369,9 +402,12 @@ public class SpaceInvadersTest {
 
 	@Test
 	public void test_EnvahisseurImmobile_DeplacerEnvahisseurVersLaDroite() {
-
+		
+		// Arrange
 		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(13,1), 1);
 		spaceinvaders.deplacerEnvahisseurVersLaDroite();
+		
+		// Assert
 		assertEquals("" + 
 				".............EE\n" + 
 				".............EE\n" +
@@ -388,8 +424,11 @@ public class SpaceInvadersTest {
 	@Test
 	public void test_EnvahisseurImmobile_DeplacerEnvahisseurVersLaGauche() {
 
+		// Arrange
 		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(0,1), 1);
 		spaceinvaders.deplacerEnvahisseurVersLaGauche();
+		
+		// Assert
 		assertEquals("" + 
 				"EE.............\n" + 
 				"EE.............\n" +
@@ -406,8 +445,11 @@ public class SpaceInvadersTest {
 	@Test
 	public void test_EnvahisseurAvancePartiellement_DeplacerEnvahisseurVersLaDroite() {
 
+		// Arrange
 		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(12,1), 3);
 		spaceinvaders.deplacerEnvahisseurVersLaDroite();
+		
+		// Assert
 		assertEquals("" + 
 				".............EE\n" + 
 				".............EE\n" +
@@ -424,8 +466,11 @@ public class SpaceInvadersTest {
 	@Test
 	public void test_EnvahisseurAvancePartiellement_DeplacerEnvahisseurVersLaGauche() {
 
+		// Arrange
 		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(2,1), 3);
 		spaceinvaders.deplacerEnvahisseurVersLaGauche();
+		
+		// Assert
 		assertEquals("" + 
 				"EE.............\n" + 
 				"EE.............\n" +
@@ -441,11 +486,14 @@ public class SpaceInvadersTest {
 
 	@Test
 	public void test_EnvahisseurChangeDeDirectionDeDroiteAGauche(){
+		
+		// Arrange
 		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(12,1), 1);
 		for (int i = 0; i<2; i++){
 			spaceinvaders.deplacerEnvahisseur();
 		}
-
+		
+		// Assert
 		assertEquals("" + 
 				"............EE.\n" + 
 				"............EE.\n" +
@@ -461,11 +509,14 @@ public class SpaceInvadersTest {
 
 	@Test
 	public void test_EnvahisseurChangeDeDirectionDeGaucheADroite(){
+		
+		// Arrange
 		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(12,1), 1);
 		for (int i = 0; i<15; i++){
 			spaceinvaders.deplacerEnvahisseur();
 		}
 
+		// Assert
 		assertEquals("" + 
 				".EE............\n" + 
 				".EE............\n" +
