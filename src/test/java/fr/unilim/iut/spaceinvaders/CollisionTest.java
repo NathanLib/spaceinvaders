@@ -21,10 +21,12 @@ public class CollisionTest {
 	
 	@Test
 	public void test_PasDeTir_NeDoitPasDetecterCollision(){
+		
+		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,9), 1);
 		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(3,2), new Position(7,1), 1);
 		
-		
+		// Assert
 		assertEquals("" + 
 				".......EEE.....\n" + 
 				".......EEE.....\n" +
@@ -41,6 +43,8 @@ public class CollisionTest {
 	
 	@Test
 	public void test_TirMissile_PlusBasQueEnvahisseurNeDoitPasDetecterCollision(){
+		
+		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,9), 1);
 		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(3,2), new Position(8,1), 1);
 		
@@ -48,6 +52,7 @@ public class CollisionTest {
 		spaceinvaders.deplacerMissile();
 		spaceinvaders.deplacerMissile();
 		
+		// Assert
 		assertEquals("" + 
 				"........EEE....\n" + 
 				"........EEE....\n" +
@@ -65,6 +70,8 @@ public class CollisionTest {
 	
 	@Test
 	public void test_TirMissile_ToucheEnvahisseurDoitDetecterCollision(){
+		
+		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,9), 1);
 		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(3,2), new Position(7,1), 1);
 		
@@ -73,7 +80,7 @@ public class CollisionTest {
 			spaceinvaders.deplacerMissile();
 		}
 		
-		
+		// Assert
 		assertEquals("" + 
 				".......EEE.....\n" + 
 				".......EME.....\n" +
@@ -91,6 +98,8 @@ public class CollisionTest {
 	
 	@Test
 	public void test_TirMissile_MemeNiveauQueEnvahisseurNeDoitPasDetecterCollision(){
+		
+		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,9), 1);
 		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(3,2), new Position(0,1), 1);
 		
@@ -99,6 +108,7 @@ public class CollisionTest {
 			spaceinvaders.deplacerMissile();
 		}
 		
+		// Assert
 		assertEquals("" + 
 				"EEE.....M......\n" + 
 				"EEE.....M......\n" +
@@ -116,6 +126,8 @@ public class CollisionTest {
 	
 	@Test
 	public void test_TirMissile_CollisionNonDetecteCasLimiteDroite(){
+		
+		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,9), 1);
 		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(3,2), new Position(5,1), 1);
 		
@@ -124,6 +136,7 @@ public class CollisionTest {
 			spaceinvaders.deplacerMissile();
 		}
 		
+		// Assert
 		assertEquals("" + 
 				".....EEEM......\n" + 
 				".....EEEM......\n" +
@@ -141,6 +154,8 @@ public class CollisionTest {
 	
 	@Test
 	public void test_TirMissile_CollisionNonDetecteCasLimiteGauche(){
+		
+		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,9), 1);
 		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(3,2), new Position(9,1), 1);
 		
@@ -149,6 +164,7 @@ public class CollisionTest {
 			spaceinvaders.deplacerMissile();
 		}
 		
+		// Assert
 		assertEquals("" + 
 				"........MEEE...\n" + 
 				"........MEEE...\n" +
