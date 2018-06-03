@@ -34,7 +34,7 @@ public class DessinSpaceInvaders implements DessinJeu {
 		   Graphics2D crayon = (Graphics2D) im.getGraphics();
 
 		   crayon.setColor(Color.gray);
-		   	crayon.fillRect(vaisseau.abscisseLaPlusAGauche(), vaisseau.ordonneeLaPlusBasse(), vaisseau.longueur(), vaisseau.hauteur());
+		   crayon.fillRect(vaisseau.abscisseLaPlusAGauche(), vaisseau.ordonneeLaPlusBasse(), vaisseau.longueur(), vaisseau.hauteur());
 
 	   }
 	   
@@ -47,10 +47,10 @@ public class DessinSpaceInvaders implements DessinJeu {
 	   }
 	   
 	   private void dessinerUnEnvahisseur(Envahisseur envahisseur, BufferedImage image){
-			Graphics2D g2d = (Graphics2D) image.getGraphics();
+			Graphics2D crayon = (Graphics2D) image.getGraphics();
 			
-			g2d.setColor(Color.RED);
-			g2d.fillRect(envahisseur.abscisseLaPlusAGauche(), envahisseur.ordonneeLaPlusBasse(), envahisseur.getDimension().longueur(), envahisseur.getDimension().hauteur());
+			crayon.setColor(Color.RED);
+			crayon.fillRect(envahisseur.abscisseLaPlusAGauche(), envahisseur.ordonneeLaPlusBasse(), envahisseur.longueur(), envahisseur.hauteur());
 		}
 
  }

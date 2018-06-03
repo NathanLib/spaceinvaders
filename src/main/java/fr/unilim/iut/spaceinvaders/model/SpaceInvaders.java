@@ -20,7 +20,7 @@ public class SpaceInvaders implements Jeu {
 		this.longueur = longueur;
 		this.hauteur = hauteur;
 
-		//Les envahisseurs commence leur déplacement par la droite
+		//Les envahisseurs effectue leur premier déplacement par la droite
 		this.deplacementDroiteEnvahisseur = true;
 	}
 
@@ -79,7 +79,7 @@ public class SpaceInvaders implements Jeu {
 
 	public void deplacerVaisseauVersLaDroite() {
 		if (vaisseau.abscisseLaPlusADroite() < (longueur - 1)) {
-			vaisseau.deplacerHorizontalementVers(Direction.DROITE);;
+			vaisseau.deplacerHorizontalementVers(Direction.DROITE);
 			if (!estDansEspaceJeu(vaisseau.abscisseLaPlusADroite(), vaisseau.ordonneeLaPlusHaute())) {
 				vaisseau.positionner(longueur - vaisseau.longueur(), vaisseau.ordonneeLaPlusHaute());
 			}
@@ -250,10 +250,9 @@ public class SpaceInvaders implements Jeu {
 
 
 
-	@Override
 	public boolean etreFini() {
-		// le jeu n'est jamais fini
-		return false;
+		// Le jeu se finit lorsque l'on détecte une collision entre le missile et l'envahisseur
+		return Collision.detecterCollision(this.missile, this.envahisseur);
 	}
 
 	public void initialiserJeu() {
@@ -262,7 +261,7 @@ public class SpaceInvaders implements Jeu {
 		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
 		
 		Dimension dimensionEnvahisseur = new Dimension(Constante.ENVAHISSEUR_LONGUEUR, Constante.ENVAHISSEUR_HAUTEUR);
-		Position positionEnvahisseur = new Position(this.longueur/2, dimensionEnvahisseur.hauteur()-1);
+		Position positionEnvahisseur = new Position(dimensionEnvahisseur.longueur()/2, dimensionEnvahisseur.hauteur()-1);
 		positionnerUnNouvelEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE);
 	}
 

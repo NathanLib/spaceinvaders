@@ -180,4 +180,32 @@ public class CollisionTest {
 		assertEquals(false,Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
 	}
 	
+	@Test
+	public void test_TirMissile_MissileSortiDeLEcranCollisionNonDetecte(){
+		
+		// Arrange
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,9), 1);
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(3,2), new Position(4,1), 1);
+		
+		spaceinvaders.tirerUnMissile(new Dimension(1, 2), 1);
+		for(int i = 0; i<7; i++){
+			spaceinvaders.deplacerMissile();
+		}
+		
+		// Assert
+		assertEquals("" + 
+				"....EEE........\n" + 
+				"....EEE........\n" +
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				".......VVV.....\n" + 
+				".......VVV.....\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	
+		assertEquals(false,Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+	}
+	
 }
