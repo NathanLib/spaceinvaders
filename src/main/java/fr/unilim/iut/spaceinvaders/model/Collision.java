@@ -38,4 +38,5 @@ public class Collision {
 				sprite1.ordonneeLaPlusBasse() >= sprite2.ordonneeLaPlusBasse() &&
 				sprite1.ordonneeLaPlusBasse() <= sprite2.ordonneeLaPlusHaute();
 	}	
+	
 }
