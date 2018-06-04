@@ -262,7 +262,7 @@ public class SpaceInvaders implements Jeu {
 
 
 	public boolean etreFini() {
-		// Le jeu se finit lorsque l'on détecte une collision entre le missile et l'envahisseur
+		// Le jeu se finit lorsque qu'il n'y a plus de d'envahisseur dans l'espace de jeu
 		return !this.aUnEnvahisseur();
 	}
 
