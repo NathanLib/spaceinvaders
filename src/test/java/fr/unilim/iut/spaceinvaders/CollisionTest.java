@@ -153,7 +153,7 @@ public class CollisionTest {
 	}
 	
 	@Test
-	public void test_TirMissile_CollisionNonDetecteCasLimiteGauche(){
+	public void test_TirMissile_CollisionDetecteCasLimiteGauche(){
 		
 		// Arrange
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,9), 1);

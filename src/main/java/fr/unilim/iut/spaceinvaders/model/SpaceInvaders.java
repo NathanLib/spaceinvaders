@@ -9,11 +9,11 @@ import fr.unilim.iut.spaceinvaders.utils.MissileException;
 public class SpaceInvaders implements Jeu {
 	int longueur;
 	int hauteur;
-	
+
 	Vaisseau vaisseau;
 	Missile missile;
 	Envahisseur envahisseur;
-	
+
 	boolean deplacementDroiteEnvahisseur;
 
 	public SpaceInvaders(int longueur, int hauteur) {
@@ -115,6 +115,7 @@ public class SpaceInvaders implements Jeu {
 		if (missile.ordonneeLaPlusBasse() < 0)
 			missile = null;
 	}
+
 
 	public void tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
 
@@ -221,7 +222,7 @@ public class SpaceInvaders implements Jeu {
 	public Envahisseur recupererEnvahisseur() {
 		return this.envahisseur;
 	}
-	
+
 	/*---------------------------------------------------------------------------------------------------------*/
 
 	//Méthode de l'interface Jeu
@@ -246,20 +247,30 @@ public class SpaceInvaders implements Jeu {
 		if (this.aUnEnvahisseur()){
 			this.deplacerEnvahisseur();
 		}
+		
+		supprimerElementsApresCollision();
+	}
+
+
+	private void supprimerElementsApresCollision() {
+		if (Collision.detecterCollision(this.missile, this.envahisseur)) {
+			this.envahisseur=null;
+			this.missile=null;
+		}
 	}
 
 
 
 	public boolean etreFini() {
 		// Le jeu se finit lorsque l'on détecte une collision entre le missile et l'envahisseur
-		return Collision.detecterCollision(this.missile, this.envahisseur);
+		return !this.aUnEnvahisseur();
 	}
 
 	public void initialiserJeu() {
 		Position positionVaisseau = new Position(this.longueur/2,this.hauteur-1);
 		Dimension dimensionVaisseau = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
 		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
-		
+
 		Dimension dimensionEnvahisseur = new Dimension(Constante.ENVAHISSEUR_LONGUEUR, Constante.ENVAHISSEUR_HAUTEUR);
 		Position positionEnvahisseur = new Position(dimensionEnvahisseur.longueur()/2, dimensionEnvahisseur.hauteur()-1);
 		positionnerUnNouvelEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE);
