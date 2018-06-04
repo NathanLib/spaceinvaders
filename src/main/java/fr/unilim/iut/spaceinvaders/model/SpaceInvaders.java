@@ -252,7 +252,7 @@ public class SpaceInvaders implements Jeu {
 	}
 
 
-	private void supprimerElementsApresCollision() {
+	public void supprimerElementsApresCollision() {
 		if (Collision.detecterCollision(this.missile, this.envahisseur)) {
 			this.envahisseur=null;
 			this.missile=null;

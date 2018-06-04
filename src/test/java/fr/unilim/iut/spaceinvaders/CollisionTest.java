@@ -1,6 +1,8 @@
 package fr.unilim.iut.spaceinvaders;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -65,7 +67,7 @@ public class CollisionTest {
 				".......VVV.....\n" + 
 				".......VVV.....\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 		
-		assertEquals(false,Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+		assertFalse(Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
 	}
 	
 	@Test
@@ -121,7 +123,7 @@ public class CollisionTest {
 				".......VVV.....\n" + 
 				".......VVV.....\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 		
-		assertEquals(false,Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+		assertFalse(Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
 	}
 	
 	@Test
@@ -149,7 +151,7 @@ public class CollisionTest {
 				".......VVV.....\n" + 
 				".......VVV.....\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	
-		assertEquals(false,Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+		assertFalse(Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
 	}
 	
 	@Test
@@ -177,7 +179,7 @@ public class CollisionTest {
 				".......VVV.....\n" + 
 				".......VVV.....\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	
-		assertEquals(false,Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+		assertFalse(Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
 	}
 	
 	@Test
@@ -205,7 +207,35 @@ public class CollisionTest {
 				".......VVV.....\n" + 
 				".......VVV.....\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	
-		assertEquals(false,Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+		assertFalse(Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
 	}
 	
+	@Test
+	public void test_CollisionDetecte_SupprimeEnvahisseurEtMissile(){
+		
+		// Arrange
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,9), 1);
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(3,2), new Position(7,1), 1);
+		
+		spaceinvaders.tirerUnMissile(new Dimension(1, 2), 1);	
+		for(int i = 0; i<5; i++){
+			spaceinvaders.deplacerMissile();
+		}
+		
+		spaceinvaders.supprimerElementsApresCollision();
+				
+		// Assert
+		assertEquals("" + 
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				".......VVV.....\n" + 
+				".......VVV.....\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+		
+	}
 }
